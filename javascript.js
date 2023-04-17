@@ -1,5 +1,5 @@
 const signs = ["✊", "✋", "✌️"];
-let chosenSigns = signs[Math.floor(Math.random() * signs.length)];
+let chosenSigns = Math.floor(Math.random() * signs.length);
 
 const ai = document.querySelector(".ai-side");
 
@@ -8,18 +8,18 @@ const playerChoose = document.querySelectorAll('.rock, .paper, .scissors');
 
 prepareSign = function() {
     ai.innerText = "✊";
-    const timer1 = setTimeout(function() {ai.innerText = "✋"}, 150);
-    const timer2 = setTimeout(function() {ai.innerText = "✌️"}, 300);
+    const timer1 = setTimeout(function() {ai.innerText = "✋"}, 100);
+    const timer2 = setTimeout(function() {ai.innerText = "✌️"}, 200);
 
-    if(ai.classList.contains("stop")){
-        ai.innerText = chosenSigns;
+    if (ai.classList.contains("stop")) {
         clearTimeout(timer1);
         clearTimeout(timer2);
+        ai.innerText = signs[chosenSigns];
     }
 };
 
 prepareSign();
-setInterval(prepareSign, 450);
+let interval = setInterval(prepareSign, 300);
 
 const playerRock = document.querySelector(".rock");
 const playerPaper = document.querySelector(".paper");
@@ -45,27 +45,27 @@ playerChoose.forEach(item => {
         };
      
         if (playerSide.classList.contains("player-rock")) {
-            if (chosenSigns === "✊") {
+            if (chosenSigns === 0) {
                 playerHeader.innerText = "Draw!";
-            } else if (chosenSigns === "✋") {
+            } else if (chosenSigns === 1) {
                  playerHeader.innerText = "You lost.";
-            } else if (chosenSigns === "✌️") {
+            } else if (chosenSigns === 2) {
                 playerHeader.innerText = "You win!";
             }
         } else if (playerSide.classList.contains("player-paper")) {
-            if (chosenSigns === "✊") {
+            if (chosenSigns === 0) {
                 playerHeader.innerText = "You Win!";
-            } else if (chosenSigns === "✋") {
+            } else if (chosenSigns === 1) {
                  playerHeader.innerText = "Draw!";
-            } else if (chosenSigns === "✌️") {
+            } else if (chosenSigns === 2) {
                 playerHeader.innerText = "You lost.";
             }
         } else if (playerSide.classList.contains("player-scissors")) {
-            if (chosenSigns === "✊") {
+            if (chosenSigns === 0) {
                 playerHeader.innerText = "You lost.";
-            } else if (chosenSigns === "✋") {
+            } else if (chosenSigns === 1) {
                  playerHeader.innerText = "You Win!";
-            } else if (chosenSigns === "✌️") {
+            } else if (chosenSigns === 2) {
                 playerHeader.innerText = "Draw!";
             }
         }
